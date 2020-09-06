@@ -2,7 +2,7 @@
 
 set -eu
 
-RELEASE_PAGE_URL_PREFIX="https://api.github.com/repos/footaku/scratches/build-war/releases/tags"
+RELEASE_PAGE_URL_PREFIX="https://api.github.com/repos/footaku/scratches/releases/tags"
 
 function tag {
     echo "$(curl -fsL --request GET \

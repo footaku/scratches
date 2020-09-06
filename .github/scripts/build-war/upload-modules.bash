@@ -2,7 +2,7 @@
 
 set -eu
 
-RELEASE_PAGE_URL_PREFIX="https://uploads.github.com/repos/footaku/scratches/build-war/releases"
+RELEASE_PAGE_URL_PREFIX="https://uploads.github.com/repos/footaku/scratches/releases"
 
 ## アップロード対象のJARとWARを列挙する
 function modules {
