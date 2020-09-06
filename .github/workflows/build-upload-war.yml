@@ -22,7 +22,7 @@ jobs:
 
       - name: get tag id
         id: release-page
-        run: echo "::set-output name=id::$(.github/scripts/find-release-page.bash ${{ secrets.GITHUB_TOKEN }} ${{ github.event.inputs.release-tag }})"
+        run: echo "::set-output name=id::$(.github/scripts/build-war/find-release-page.bash ${{ secrets.GITHUB_TOKEN }} ${{ github.event.inputs.release-tag }})"
 
       - name: upload
-        run: .github/scripts/upload-modules.bash ${{ secrets.GITHUB_TOKEN }} ${{ steps.release-page.outputs.id }}
+        run: .github/scripts/build-war/upload-modules.bash ${{ secrets.GITHUB_TOKEN }} ${{ steps.release-page.outputs.id }}
