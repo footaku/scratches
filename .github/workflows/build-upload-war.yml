@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: packaging
-        run: ./mvnw package -f build-war/pom.xml
+        run: build-war/mvnw package -f build-war/pom.xml
 
       - name: get tag id
         id: release-page
