@@ -6,8 +6,8 @@ RELEASE_PAGE_URL_PREFIX="https://uploads.github.com/repos/footaku/scratches/rele
 
 ## アップロード対象のJARとWARを列挙する
 function modules {
-    find . -type f -regex "\./\(.*\)/build/.*\.[j|w]ar" | \
-        grep -v -E "common|buildSrc|local-env" | \
+    find . -type f -regex "\./\(.*/\)target/.*\.[j|w]ar" | \
+        grep -v -E "WEB-INF" | \
         sort
 }
 
