@@ -1,0 +1,27 @@
+name: Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-tag:
+        description: 'アップロード先のReleaseページのTag'
+        required: true
+
+jobs:
+  package:
+    name: Create packages
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: packaging
+        run: ./mvnw package -f build-war/pom.xml
+
+      - name: get tag id
+        id: release-page
+        run: echo "::set-output name=id::$(.github/scripts/find-release-page.bash ${{ secrets.GITHUB_TOKEN }} ${{ github.event.inputs.release-tag }})"
+
+      - name: upload
+        run: .github/scripts/upload-modules.bash ${{ secrets.GITHUB_TOKEN }} ${{ steps.release-page.outputs.id }}
