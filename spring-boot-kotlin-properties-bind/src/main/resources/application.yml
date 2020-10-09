@@ -1,0 +1,15 @@
+props:
+  settings:
+    - aaa
+    - bbb
+    - ccc
+  item:
+    subItem1:
+      value: ddd
+    subItem2:
+      value: eee
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, configprops
