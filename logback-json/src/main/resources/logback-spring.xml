@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property resource="application.yml"/>
+    <contextName>${spring.application.name}</contextName>
+    <springProfile name="!production">
+        <include resource="org/springframework/boot/logging/logback/base.xml"/>
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="production">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+                <providers>
+                    <timestamp/>
+                    <logLevel/>
+                    <threadName/>
+                    <loggerName/>
+                    <nestedField>
+                        <fieldName>application</fieldName>
+                        <providers>
+                            <pattern>
+                                <pattern>
+                                    {"name": "logback-json", "profile": "${SPRING_PROFILES_ACTIVE}"}
+                                </pattern>
+                            </pattern>
+                            <message/>
+                            <pattern>
+                                <pattern>
+                                    {"stackTrace": "%replace(%throwable){'\t','    '}"}
+                                </pattern>
+                            </pattern>
+                        </providers>
+                    </nestedField>
+                </providers>
+            </encoder>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+</configuration>
