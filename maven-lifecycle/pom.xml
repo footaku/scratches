@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.example.footaku</groupId>
+  <artifactId>maven-lifecycle</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <properties>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
+        <executions>
+          <execution>
+            <id>clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${project.basedir}/src/main/resources/scripts/clean.sh</executable>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>install</id>
+            <phase>install</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${project.basedir}/src/main/resources/scripts/install.sh</executable>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>verify</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${project.basedir}/src/main/resources/scripts/verify.sh</executable>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>package</id>
+            <phase>package</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${project.basedir}/src/main/resources/scripts/package.sh</executable>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>
