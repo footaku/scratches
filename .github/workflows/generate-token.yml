@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Generate token
         id: generate_token
-        run: echo ${{ secrets.GITHUB_TOKEN }}
+        run: echo '::set-output name=token::${{ secrets.GITHUB_TOKEN }}'
 
       - name: Output token
         env:
