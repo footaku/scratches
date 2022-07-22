@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch
+
+permissions:
+  contents: read
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate token
+        id: generate_token
+        run: echo ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Output token
+        env:
+          TOKEN: ${{ steps.generate_token.outputs.token }}
+        run: |
+          echo "Access Token: ${TOKEN}"
