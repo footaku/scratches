@@ -1,0 +1,12 @@
+[
+  {
+    "name": "com.example.footaku.graal.data.Content",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "org.mariadb.jdbc.Driver",
+    "allDeclaredConstructors": true
+  }
+]

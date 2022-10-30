@@ -1,0 +1,9 @@
+{
+  "resources": {
+    "includes": [
+      {"pattern": "driver.properties"},
+      {"pattern": "mariadb.properties"}
+    ]
+  },
+  "bundles": []
+}

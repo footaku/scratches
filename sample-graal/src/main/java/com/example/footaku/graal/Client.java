@@ -12,14 +12,14 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
-public class Reader {
+public class Client {
     private final JsonMapper jsonMapper;
 
-    public Reader(JsonMapper jsonMapper) {
+    public Client(JsonMapper jsonMapper) {
         this.jsonMapper = jsonMapper;
     }
 
-    public Content read() {
+    public Content get() {
         Content content;
         try {
             content = jsonMapper.readValue(http(), Content.class);
