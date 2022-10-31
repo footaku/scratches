@@ -6,3 +6,5 @@ sample-graal.iml
 .sdkmanrc
 
 target/
+
+dependency-reduced-pom.xml

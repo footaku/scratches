@@ -5,8 +5,23 @@
     "allDeclaredMethods": true,
     "allDeclaredConstructors": true
   },
+
   {
-    "name": "org.mariadb.jdbc.Driver",
+    "name": "com.mysql.cj.conf.url.SingleConnectionUrl",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "com.mysql.cj.protocol.StandardSocketFactory",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "com.mysql.cj.log.StandardLogger",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
     "allDeclaredConstructors": true
   }
 ]

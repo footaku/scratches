@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  mysql:
+    image: mysql:8.0.31-debian
+    volumes:
+      - type: volume
+        source: mysql-data
+        target: /var/lib/mysql
+      - type: bind
+        source: ./init
+        target: /docker-entrypoint-initdb.d
+    ports:
+      - target: 3306
+        published: 3306
+        protocol: tcp
+        mode: host
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: graal
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+
+volumes:
+  mysql-data:
+    name: mysql-volume
