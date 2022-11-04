@@ -1,12 +1,48 @@
 package com.example.footaku.graal;
 
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import org.apache.commons.cli.*;
 
 import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
+        if (!isValidArgs(args)) {
+            System.exit(1);
+        };
         execute();
+        System.exit(0);
+    }
+
+    private static boolean isValidArgs(String[] args) {
+        var options = new Options();
+        options.addOption(
+                Option.builder("a")
+                        .longOpt("aaa")
+                        .hasArg(true)
+                        .required(true)
+                        .desc("Set aaa")
+                        .build()
+        );
+        options.addOption(
+                Option.builder("b")
+                        .longOpt("bbb")
+                        .hasArg(false)
+                        .required(false)
+                        .desc("Set BbB")
+                        .build()
+        );
+
+        var parser = new DefaultParser();
+        try {
+            var command = parser.parse(options, args);
+            System.out.printf("a has been set: %s\n", command.hasOption("a"));
+            System.out.printf("b has been set: %s\n", command.hasOption("b"));
+            return true;
+        } catch (ParseException e) {
+            new HelpFormatter().printHelp("sample-graal -a <param> [-b]", options);
+            return false;
+        }
     }
 
     private static void execute() {
@@ -14,7 +50,7 @@ public class Main {
 
         var user = "user";
         var pass = "pass";
-        try(var con = new DBConnection(user, pass).get()) {
+        try (var con = new DBConnection(user, pass).get()) {
             con.setAutoCommit(false);
 
             var inserted = new Writer(con).write(content);
