@@ -12,10 +12,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
-public class Client {
+public class Sender {
     private final JsonMapper jsonMapper;
 
-    public Client(JsonMapper jsonMapper) {
+    public Sender(JsonMapper jsonMapper) {
         this.jsonMapper = jsonMapper;
     }
 
@@ -33,7 +33,7 @@ public class Client {
     private String http() {
         URI uri;
         try {
-            uri = new URI("https://httpstat.us/200");
+            uri = new URI("http://localhost/200");
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }

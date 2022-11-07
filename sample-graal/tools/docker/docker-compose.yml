@@ -1,5 +1,12 @@
 version: "3.8"
 services:
+  httpstate:
+    image: ghcr.io/aaronpowell/httpstatus:058d5b93178cb9f11d9aeb9405e07ef5875331c8
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
   mysql:
     image: mysql:8.0.31-debian
     volumes:
@@ -7,7 +14,7 @@ services:
         source: mysql-data
         target: /var/lib/mysql
       - type: bind
-        source: ./init
+        source: ./mysql/init
         target: /docker-entrypoint-initdb.d
     ports:
       - target: 3306
