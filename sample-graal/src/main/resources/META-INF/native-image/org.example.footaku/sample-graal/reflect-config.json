@@ -5,6 +5,25 @@
     "allDeclaredMethods": true,
     "allDeclaredConstructors": true
   },
+  {
+    "name": "com.example.footaku.graal.LoggerProvider$JsonFormatter$Property",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+
+  {
+    "name": "java.util.logging.LogRecord",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "java.util.logging.Level",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
 
   {
     "name": "com.mysql.cj.conf.url.SingleConnectionUrl",

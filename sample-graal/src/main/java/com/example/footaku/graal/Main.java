@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.apache.commons.cli.*;
 
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 public class Main {
+    private static final Logger logger = LoggerProvider.of(Main.class).instance();
     public static void main(String[] args) {
         if (!isValidArgs(args)) {
             System.exit(1);
@@ -36,8 +38,8 @@ public class Main {
         var parser = new DefaultParser();
         try {
             var command = parser.parse(options, args);
-            System.out.printf("a has been set: %s\n", command.hasOption("a"));
-            System.out.printf("b has been set: %s\n", command.hasOption("b"));
+            logger.info("a has been set: " + command.hasOption("a"));
+            logger.info("b has been set: " + command.hasOption("b"));
             return true;
         } catch (ParseException e) {
             new HelpFormatter().printHelp("sample-graal -a <param> [-b]", options);
@@ -46,7 +48,7 @@ public class Main {
     }
 
     private static void execute() {
-        var content = new Client(new JsonMapper()).get();
+        var content = new Sender(new JsonMapper()).get();
 
         var user = "user";
         var pass = "pass";
@@ -54,13 +56,13 @@ public class Main {
             con.setAutoCommit(false);
 
             var inserted = new Writer(con).write(content);
-            System.out.printf("Row inserted: %s%n", inserted);
+            logger.info("Row inserted: " + inserted);
 
             var contents = new Reader(con).read(content);
-            System.out.println(contents);
+            logger.info(contents.toString());
 
             var deleted = new Writer(con).delete(content);
-            System.out.printf("Row deleted: %s%n", deleted);
+            logger.info("Row deleted: " + deleted);
 
             con.commit();
         } catch (SQLException e) {
