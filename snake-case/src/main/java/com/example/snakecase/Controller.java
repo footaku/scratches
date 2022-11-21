@@ -1,5 +1,7 @@
 package com.example.snakecase;
 
+import org.springdoc.api.annotations.ParameterObject;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,9 +12,10 @@ public class Controller {
 
   @GetMapping
   public String get(
-    Item item
+    @ParameterObject @Validated Item item
   ) {
-    System.out.println(item.itemId());
-    return "{}";
+    return String.format("""
+      { "id": %s, "name": %s }
+      """.stripIndent(), item.itemId(), item.itemName());
   }
 }
